@@ -6,4 +6,4 @@ This application was built following JavaScript MasterClass [course](https://lea
 
 User is able to add, remove and filter tasks. Currently the project doesn't store input, so all tasks will be lost after refreshing the page.
 
-You can visit the hosted aplication [here](#).
+You can visit the hosted aplication [here](https://javascript-masterclass-todo.netlify.app/).
