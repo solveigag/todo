@@ -1,6 +1,6 @@
 const addForm = document.querySelector(".add");
 const tasks = document.querySelector(".tasks");
-
+const clearAll = document.querySelector(".clear");
 
 addForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -24,4 +24,14 @@ tasks.addEventListener("click", event => {
         //logic that ensures task is only removed when correct part of element is clicked
         event.target.parentElement.remove();
     }
+})
+
+clearAll.addEventListener("click", event => {
+    //grab all elements in the tasks div
+    const taskItems = tasks.querySelectorAll("li");
+    //loop throught all elements
+    taskItems.forEach(element => {
+        //remove each element individually
+        element.remove();
+    })
 })
