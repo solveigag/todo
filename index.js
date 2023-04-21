@@ -6,7 +6,10 @@ const searchForm = document.querySelector(".search");
 
 function updateMessage() {
   const tasksQuantity = tasks.children.length;
-  messageSpan.textContent = `You have ${tasksQuantity} pending tasks`;
+  messageSpan.textContent =
+    tasksQuantity === 1
+      ? `You have ${tasksQuantity} pending task`
+      : `You have ${tasksQuantity} pending tasks`;
 }
 
 updateMessage(); //call the function on page load
@@ -51,21 +54,22 @@ clearAll.addEventListener("click", (event) => {
 
 function filterTask(term) {
   // converting html collection to an array and hide tasks that don't math searched term
-  Array.from(tasks.children).filter((task) => {
-    return !task.textContent.toLowerCase().includes(term)
-  })
-  .forEach(task => {
-    task.classList.add("hide") 
-  });
+  Array.from(tasks.children)
+    .filter((task) => {
+      return !task.textContent.toLowerCase().includes(term);
+    })
+    .forEach((task) => {
+      task.classList.add("hide");
+    });
 
   // if search term is deleted remove hide class
-  Array.from(tasks.children).filter((task) => {
-    return task.textContent.toLowerCase().includes(term)
-  })
-  .forEach(task => {
-    task.classList.remove("hide") 
-  });
-  
+  Array.from(tasks.children)
+    .filter((task) => {
+      return task.textContent.toLowerCase().includes(term);
+    })
+    .forEach((task) => {
+      task.classList.remove("hide");
+    });
 }
 
 //will capture search term with every typed in letter
@@ -77,11 +81,11 @@ searchForm.addEventListener("keyup", (event) => {
 
 //clearing search field
 
-searchForm.addEventListener("click", event => {
-    //looking for a click specifically on the icon
-    if (event.target.classList.contains("reset")) {
-        searchForm.reset();
-        const term = searchForm.task.value.trim();
-        filterTask(term);
-    }
-})
+searchForm.addEventListener("click", (event) => {
+  //looking for a click specifically on the icon
+  if (event.target.classList.contains("reset")) {
+    searchForm.reset();
+    const term = searchForm.task.value.trim();
+    filterTask(term);
+  }
+});
