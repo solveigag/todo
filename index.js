@@ -1,6 +1,14 @@
 const addForm = document.querySelector(".add");
 const tasks = document.querySelector(".tasks");
 const clearAll = document.querySelector(".clear");
+const messageSpan = document.querySelector(".message span");
+
+function updateMessage() {
+    const tasksQuantity = tasks.children.length;
+    messageSpan.textContent = `You have ${tasksQuantity} pending tasks`
+}
+
+updateMessage(); //call the function on page load
 
 addForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -14,6 +22,8 @@ addForm.addEventListener("submit", (event) => {
     //adding a list item into the tasks div
     addForm.reset();
     //reseting the input
+    updateMessage();
+    //updating the quantity on tasks present
   }
 });
 
@@ -23,6 +33,8 @@ tasks.addEventListener("click", event => {
     if (event.target.classList.contains("delete")) {
         //logic that ensures task is only removed when correct part of element is clicked
         event.target.parentElement.remove();
+        //updating the quantity on tasks present
+        updateMessage();
     }
 })
 
@@ -34,4 +46,5 @@ clearAll.addEventListener("click", event => {
         //remove each element individually
         element.remove();
     })
+    updateMessage();
 })
